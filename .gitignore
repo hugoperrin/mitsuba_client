@@ -132,3 +132,5 @@ dmypy.json
 # Coverage related
 coverage_html/
 coverage-reports/
+
+.vscode/

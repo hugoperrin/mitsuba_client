@@ -1,1 +1,1 @@
-"""Module for the cli usage"""
+"""Module for the cli."""

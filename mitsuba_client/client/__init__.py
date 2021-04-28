@@ -1,1 +1,1 @@
-"""Module for the client itself"""
+"""Module for the client itself."""
