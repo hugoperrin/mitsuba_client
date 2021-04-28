@@ -15,6 +15,9 @@ packages = [
 
 python = "^3.7.5"
 fire = "^0.4.0"
+loguru = "^0.5.3"
+numpy = "^1.20.2"
+torch = "^1.8.1"
 
 
 [tool.poetry.dev-dependencies]
