@@ -1,12 +1,15 @@
 """File to define a cpu renderer."""
+import os
 from typing import List, Optional, Union
 
 import numpy as np
+import pyexr
 import torch
 from loguru import logger
 from tqdm import tqdm
 
 from mitsuba.render import Scene
+from mitsuba_client import default_gpu_mitsuba_variant
 from mitsuba_client.utils.return_types import ReturnType
 
 from .gpu_renderer import GPURenderer
@@ -14,6 +17,24 @@ from .gpu_renderer import GPURenderer
 
 class MultiplePassGPURenderer(GPURenderer):
     """Renderer on gpu with multiple passees => averaging results in order to avoid OOM VRAM errors."""
+
+    def __init__(
+        self,
+        mitsuba_variant: str = default_gpu_mitsuba_variant,
+        progressive_render_folder_path: Optional[str] = None,
+    ) -> None:
+        """ MultiplePassGPURenderer
+
+        Args:
+            mitsuba_variant (str, optional): The mitsuba variant to use. Defaults to default_gpu_mitsuba_variant.
+            progressive_render_folder_path (Optional[str], optional): The folder path to use if writing intermediary results. Defaults to None.
+        """
+        self.progressive_render_folder_path: Optional[
+            str
+        ] = progressive_render_folder_path
+        if self.progressive_render_folder_path is not None:
+            os.makedirs(os.path.abspath(self.progressive_render_folder_path))
+        super().__init__(mitsuba_variant=mitsuba_variant)
 
     def render(
         self,
@@ -43,7 +64,13 @@ class MultiplePassGPURenderer(GPURenderer):
                 continue
             for i, _ in enumerate(results):
                 results[i] += results_tmp[i]
-
+                if self.progressive_render_folder_path is not None:
+                    pyexr.write(
+                        os.path.join(
+                            self.progressive_render_folder_path, f"render_{k}_{i}.exr"
+                        ),
+                        data=results_tmp[i],
+                    )
         for i, _ in enumerate(results):
             results[i] /= n_pass
         return results
