@@ -11,7 +11,6 @@ from mitsuba_client.client.rendering_env import RendererEnv
 mitsuba.set_variant("packet_rgb")
 
 
-
 class TestBaseRendering(unittest.TestCase):
     def test_rendering_cpu(self):
         path_scene: str = os.path.join("scenes", "bathroom", "scene.xml")

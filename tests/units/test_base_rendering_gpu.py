@@ -25,4 +25,4 @@ class TestBaseRendering(unittest.TestCase):
         for img in imgs:
             logger.warning(f"Shape is: {img.shape}")
             self.assertIsInstance(img, np.ndarray)
-            self.assertTrue(img.shape == (2560, 1440, 3))
+            self.assertTrue(img.shape == (1440, 2560, 3))

@@ -39,6 +39,4 @@ class GPURenderer(CPURenderer):
         results: List = super().render(
             scene=scene, return_type=return_type, **kwargs,
         )
-        for i, res in enumerate(results):
-            results[i] = np.transpose(res, (1, 0, 2))
         return results
