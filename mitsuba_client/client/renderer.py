@@ -3,6 +3,7 @@ from typing import Union
 
 import numpy as np
 import torch
+from loguru import logger
 
 import mitsuba
 from mitsuba.render import Scene
@@ -14,6 +15,7 @@ class Renderer:
     """Abstract class for the renderer wrapper."""
 
     def __init__(self, mitsuba_variant: str = default_mitsuba_variant) -> None:
+        logger.info(f"Loading renderer with variant: {mitsuba_variant}")
         mitsuba.set_variant(mitsuba_variant)
         self.mitsuba_variant: str = mitsuba_variant
 

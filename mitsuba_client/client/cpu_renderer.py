@@ -38,7 +38,7 @@ class CPURenderer(Renderer):
             scene.integrator().render(scene, sensor)
             film = sensor.film()
             img = film.bitmap(raw=True).convert(
-                Bitmap.PixelFormat.RGB, Struct.Type.Float32, srgb_gamma=True,
+                Bitmap.PixelFormat.RGB, Struct.Type.Float32, srgb_gamma=False,
             )
             results.append(np.array(img))
         return results
