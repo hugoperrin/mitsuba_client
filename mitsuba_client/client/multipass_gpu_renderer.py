@@ -8,8 +8,11 @@ import torch
 from loguru import logger
 from tqdm import tqdm
 
-from mitsuba.render import Scene
 from mitsuba_client import default_gpu_mitsuba_variant
+import mitsuba
+mitsuba.set_variant(default_gpu_mitsuba_variant)
+
+from mitsuba.render import Scene
 from mitsuba_client.utils.return_types import ReturnType
 
 from .gpu_renderer import GPURenderer

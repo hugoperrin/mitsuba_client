@@ -6,9 +6,12 @@ from typing import List, Union
 import numpy as np
 import torch
 
+from mitsuba_client import default_mitsuba_variant
+import mitsuba
+mitsuba.set_variant(default_mitsuba_variant)
+
 from mitsuba.core import Bitmap, Struct
 from mitsuba.render import Scene
-from mitsuba_client import default_mitsuba_variant
 from mitsuba_client.utils.return_types import ReturnType
 
 from .renderer import Renderer

@@ -2,7 +2,7 @@
 name = "mitsuba_client"
 version = "0.1.0"
 description = "Mitsuba renderer client"
-authors = ["Hugo Perrin (hugo1344.perrin@gmail.com)"]
+authors = ["Hugo Perrin <hugo1344.perrin@gmail.com>"]
 packages = [
     { include = "mitsuba_client" },
 ]

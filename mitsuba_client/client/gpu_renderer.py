@@ -5,8 +5,11 @@ import numpy as np
 import torch
 from loguru import logger
 
-from mitsuba.render import Scene
 from mitsuba_client import default_gpu_mitsuba_variant
+import mitsuba
+mitsuba.set_variant(default_gpu_mitsuba_variant)
+
+from mitsuba.render import Scene
 from mitsuba_client.utils.return_types import ReturnType
 
 from .cpu_renderer import CPURenderer
